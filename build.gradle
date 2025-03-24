@@ -22,6 +22,9 @@ repositories {
 	maven { url "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
 	// maven { url = "https://mvn.devos.one/releases/" }
 	maven { url "https://mvn.devos.one/snapshots" }
+	maven("https://maven.jamieswhiteshirt.com/libs-release") { // Reach Entity Attributes
+        	content { includeGroup("com.jamieswhiteshirt") }
+	}
 }
 
 fabricApi {
@@ -49,12 +52,15 @@ dependencies {
 	modImplementation "net.createmod.ponder:Ponder-Fabric-${project.minecraft_version}:${project.ponder_version}"
 	include "net.createmod.ponder:Ponder-Fabric-${project.minecraft_version}:${project.ponder_version}"
 
-    // Porting Lib
+    // Porting Lib and config
 	modApi("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forgeconfigapiport_version}") //source: https://github.com/Fuzss/forgeconfigapiport-fabric
 	for (String module in port_lib_modules.split(",")) {
-        modApi "io.github.fabricators_of_create.Porting-Lib:$module:$port_lib_version"
-	include "io.github.fabricators_of_create.Porting-Lib:$module:$port_lib_version"
+        //modApi "io.github.fabricators_of_create.Porting-Lib:$module:$port_lib_version"
+	//include "io.github.fabricators_of_create.Porting-Lib:$module:$port_lib_version"
+	modImplementation(include("io.github.fabricators_of_create.Porting-Lib:$module:$port_lib_version"))	
     }
+
+	modApi(include("com.jamieswhiteshirt:reach-entity-attributes:${project.rea_version}"))
 	
 	// Flywheel
 	modApi "dev.engine-room.flywheel:flywheel-fabric-api-${project.minecraft_version}:${project.flywheel_version}"
@@ -112,7 +118,10 @@ publishing {
 		maven { url "https://maven.shedaniel.me/" }
     		maven { url "https://maven.terraformersmc.com/releases/" }
 		maven { url "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
-		// maven { url = "https://mvn.devos.one/releases/" }
+		maven { url = "https://mvn.devos.one/releases/" }
 		maven { url "https://mvn.devos.one/snapshots" }
+		maven("https://maven.jamieswhiteshirt.com/libs-release") { // Reach Entity Attributes
+        		content { includeGroup("com.jamieswhiteshirt") }
+		}
 	}
 }

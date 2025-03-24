@@ -21,7 +21,7 @@ repositories {
     	maven { url "https://maven.terraformersmc.com/releases/" }
 	maven { url "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
 	maven { url = "https://mvn.devos.one/releases/" }
-	maven{ url "https://mvn.devos.one/snapshots" }
+	maven { url "https://mvn.devos.one/snapshots" }
 }
 
 fabricApi {
@@ -53,11 +53,13 @@ dependencies {
 	modApi("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forgeconfigapiport_version}") //source: https://github.com/Fuzss/forgeconfigapiport-fabric
 	for (String module in port_lib_modules.split(",")) {
         modApi "io.github.fabricators_of_create.Porting-Lib:$module:$port_lib_version"
+	include "io.github.fabricators_of_create.Porting-Lib:$module:$port_lib_version"
     }
 	
 	// Flywheel
 	modApi "dev.engine-room.flywheel:flywheel-fabric-api-${project.minecraft_version}:${project.flywheel_version}"
 	modImplementation "dev.engine-room.flywheel:flywheel-fabric-${project.minecraft_version}:${project.flywheel_version}"
+	include "dev.engine-room.flywheel:flywheel-fabric-${project.minecraft_version}:${project.flywheel_version}"
 	
 }
 

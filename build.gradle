@@ -60,6 +60,7 @@ dependencies {
 	modImplementation(include("io.github.fabricators_of_create.Porting-Lib:$module:$port_lib_version"))	
     }
 
+	// Entity Attributes Lib
 	modApi(include("com.jamieswhiteshirt:reach-entity-attributes:${project.rea_version}"))
 	
 	// Flywheel
